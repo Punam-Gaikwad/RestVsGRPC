@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package record;
+
+import "google/api/annotations.proto";
+
+service RecordsService {
+  rpc GetRecords(Request) returns (GetResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/records"
+        };
+    }
+}
+
+message Record {
+  string title = 1;
+  int32 year = 2;
+  string imdbID = 3;
+}
+
+message Request {}
+
+message GetResponse {
+  repeated Record records = 1;
+}
